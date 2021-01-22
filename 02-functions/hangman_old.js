@@ -1,5 +1,21 @@
 const prompt = require("prompt-sync")();
 
+function getNumberOfUniqueAlphabets(word) {
+  let unique = {};
+  let i = 0;
+  while (i < word.length) {
+    let alphabet = word[i];
+    // if the key represented by the variable alphabet does
+    // not exists in the unique object
+    if (unique.hasOwnProperty(alphabet) == false) {
+      unique[alphabet] = 1;
+      noOfUnique += 1;
+    }
+    i += 1;
+  }
+  return noOfUnique;
+}
+
 // 1. IDENTIFY THE STATE
 // - variables that represent the problem
 // - variables that represent the solution
@@ -8,20 +24,7 @@ let guesses = 10;
 let ans = [];
 
 secret = prompt("Please enter the secret sentence: ");
-noOfUnique = 0;
-// Dictionary in Python is known as Objects in JavaScript
-let unique = {};
-let i = 0;
-while (i < secret.length) {
-  let alphabet = secret[i];
-  // if the key represented by the variable alphabet does
-  // not exists in the unique object
-  if (unique.hasOwnProperty(alphabet) == false) {
-    unique[alphabet] = 1;
-    noOfUnique += 1;
-  }
-  i += 1;
-}
+noOfUnique = getNumberOfUniqueAlphabets(secret);
 
 console.log("No of unique =" + noOfUnique);
 
@@ -39,9 +42,8 @@ while (guesses > 0) {
       displayStr = displayStr + secret[i] + " ";
     } else {
       displayStr = displayStr + "_" + " ";
- 
     }
-         i = i + 1;
+    i = i + 1;
   }
   console.log(displayStr);
 
