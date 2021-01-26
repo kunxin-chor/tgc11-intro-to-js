@@ -33,8 +33,12 @@ btn.addEventListener("click", function() {
       }
   }
 
+  let timingSelect = document.querySelector('#timing');
+  let timing = timingSelect.value;
+
   console.log("Selected seating =", selectedSeating);
   console.log("Selected servies =", selectedServices);
+  console.log("selected timing =", timing)
 
 
 
