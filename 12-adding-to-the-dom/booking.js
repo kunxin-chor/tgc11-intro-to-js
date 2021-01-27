@@ -17,6 +17,25 @@ let seatingOptions = [
     }
 ]
 
+let services = [
+    {
+        name: 'birthday-song',
+        display:'Birthday Song'
+    },
+    {
+        name: 'live-band',
+        display:'Live Band'
+    },
+    {
+        name: 'seafood-platter',
+        display: 'Seafood Platter'
+    },
+    {
+        name: 'handmade-noodle',
+        display: 'Handmade Noodle'
+    }
+]
+
 // 0. create the booking options
 let seatingOptionsElement = document.querySelector('#seating-options');
 
@@ -27,6 +46,28 @@ for (let option of seatingOptions) {
         <input type="radio" value="${option.name}" name="seating" class="form-check-input seating"/>
         <label class="form-check-label">${option.display}</label>`
     seatingOptionsElement.appendChild(divElement);
+}
+
+let servicesElement = document.querySelector('#serviceCheckboxes');
+for (let service of services) {
+    let divElement = document.createElement('div');
+    divElement.className='form-check';
+
+    let checkboxElement = document.createElement('input');
+    checkboxElement.type = 'checkbox';
+    checkboxElement.value = service.name;
+    checkboxElement.className = "services form-check-input";
+
+    let labelElement = document.createElement('label');
+    labelElement.className='form-check-label';
+    labelElement.innerHTML=service.display;
+
+    divElement.appendChild(checkboxElement);
+    divElement.appendChild(labelElement);
+    
+    servicesElement.appendChild(divElement);
+
+
 }
 
 
