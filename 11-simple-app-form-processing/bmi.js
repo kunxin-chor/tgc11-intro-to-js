@@ -17,6 +17,9 @@ function adviseHealth(bmi) {
 let calculateMetric = (weight, height) => weight / height**2;
 let calculateImperial = (weight, height) => weight / height**2 * 703;
 
+// hide the results div
+document.querySelector('#results').style.display='none';
+
 let btn = document.querySelector('#calculate-btn');
 btn.addEventListener('click', function(){
     // extract out the unit of measurement
@@ -45,7 +48,7 @@ btn.addEventListener('click', function(){
     let healthAdvice = adviseHealth(bmi);
 
     // alert("Your bmi is " + bmi + " and you are " + healthAdvice);
-    let results = document.querySelector("#results");
+    let results = document.querySelector("#results-text");
     results.innerHTML = `
     <h1>Your results:</h1>
     <ul>
@@ -53,6 +56,12 @@ btn.addEventListener('click', function(){
         <li>Your weight status: ${healthAdvice}
     </ul>
     `
+
+    // hide the form
+    document.querySelector('#bmi-form').style.display = 'none';
+
+    // show the results
+    document.querySelector('#results').style.display="block";
 
 }) // end add event listener to button
 
@@ -72,3 +81,9 @@ for (let radioButton of unitRadioButtons) {
         }
     }) 
 }
+
+let backButton = document.querySelector('#back-btn')
+backButton.addEventListener('click', function(){
+    document.querySelector('#bmi-form').style.display = 'block';
+    document.querySelector('#results').style.display = "none";
+})
