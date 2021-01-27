@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="new-number" placeholder="Enter a number here"/>
+    <button id="add-btn">Add</button>
+    <input type="text" id="limit-number" placeholder="Enter a number here"/>
+    <ul id="number-list"></ul> 
+    <div id="total"></div>
+    <script>
+        let numberInput = document.querySelector('#new-number');
+        let numberList = document.querySelector('#number-list');
+        let btn = document.querySelector('#add-btn');
+        btn.addEventListener('click', function(){
+            let number = numberInput.value;
+            // numberList.innerHTML += "<li>" + number + "</li>";
+            // numberList.innerHTML += `<li>${number}</li>`;
+            let newElement = document.createElement('li');
+            newElement.innerHTML = number;
+            newElement.className = 'numbers';
+            numberList.appendChild(newElement);
+
+            let total = 0;
+            let allNumbers = document.querySelectorAll('.numbers');
+            for (let n of allNumbers) {
+                total += parseFloat(n.innerHTML);
+            }
+            document.querySelector('#total').innerHTML = total;
+        })
+
+        let limitTextbox = document.querySelector('#limit-number');
+        limitTextbox.addEventListener('input', ()=>{
+            let limitNumber = parseFloat(limitTextbox.value);
+            let allNumberElements = document.querySelectorAll('.numbers');
+            for (let n of allNumberElements) {
+                n.style.backgroundColor = 'white';
+            }
+
+            for (let n of allNumberElements) {
+                if (parseFloat(n.innerHTML) >= limitNumber) {
+                    n.style.backgroundColor = 'yellow'
+                } 
+            }
+        })
+    </script>
+
+</body>
+</html>
