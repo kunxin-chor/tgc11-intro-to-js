@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js" integrity="sha512-otOZr2EcknK9a5aa3BbMR9XOjYKtxxscwyRHN6zmdXuRfJ5uApkHB7cz1laWk2g8RKLzV9qv/fl3RPwfCuoxHQ==" crossorigin="anonymous"></script>
+    <script>
+        // WRONG WAY TO READ IN TWO AXIOS FILES
+        // FOr the case if we need to wait until both of them are ready
+        // let data1;
+        // let data2;
+        // axios.get('data1.json').then(function(response){
+        //     console.log(response.data)
+        //     data1 = response.data;
+        // })
+
+        // axios.get('data2.json').then(function(response){
+        //     console.log(response.data);
+        //     data2 = response.data;
+        // })
+
+        // console.log(data1, data2);
+
+        axios.get('data1.json').then(function(response){
+            axios.get('data2.json').then(function(response2){
+                let data1 = response.data;
+                let data2 = resposne2.data;
+            })
+        })
+
+        // axios.all('data1.json', 'data2.json').then(function(response1, response2){
+
+        // })
+    </script>
+</body>
+</html>

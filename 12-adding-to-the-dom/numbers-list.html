@@ -36,14 +36,17 @@
         limitTextbox.addEventListener('input', ()=>{
             let limitNumber = parseFloat(limitTextbox.value);
             let allNumberElements = document.querySelectorAll('.numbers');
-            for (let n of allNumberElements) {
-                n.style.backgroundColor = 'white';
-            }
+            
+            // for (let n of allNumberElements) {
+            //     n.style.backgroundColor = 'white';
+            // }
 
             for (let n of allNumberElements) {
                 if (parseFloat(n.innerHTML) >= limitNumber) {
                     n.style.backgroundColor = 'yellow'
-                } 
+                } else {
+                    n.style.backgroundColor = 'white'
+                }
             }
         })
     </script>
