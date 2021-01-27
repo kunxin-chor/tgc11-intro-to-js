@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" name="new-task" placeholder='Enter a new task' id="new-task"/>
+        <button id="add-btn">Add</button>
+    </div>
+    <ul id="task-list">
+
+    </ul>
+    <script>
+        document.querySelector('#add-btn').addEventListener('click', ()=>{
+               let todo = document.querySelector('#new-task').value;
+               let taskList = document.querySelector('#task-list');
+               taskList.innerHTML += `<li>${todo} <button>Delete</button></li>`;
+        })
+    </script>
+
+</body>
+</html>

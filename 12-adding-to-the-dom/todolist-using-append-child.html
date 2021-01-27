@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <input
+        type="text"
+        name="new-task"
+        placeholder="Enter a new task"
+        id="new-task"
+      />
+      <button id="add-btn">Add</button>
+    </div>
+    <ul id="task-list"></ul>
+  </body>
+  <script>
+      document.querySelector('#add-btn').addEventListener('click', function(){
+          let task = document.querySelector('#new-task').value;
+
+          let taskListElement = document.querySelector('#task-list');
+
+          // 1. CREATE A NEW ELEMENT OBJECT
+          let newTodoElement = document.createElement('li');
+
+          // 2. SET THE CONTENT OF THE NEW ELEMENT
+          newTodoElement.innerHTML = task;
+
+        //  let deleteButton = document.createElement('button');
+        //   deleteButton.innerHTML = "Delete";
+        //   newTodoElement.appendChild(deleteButton);
+        
+        newTodoElement.innerHTML += '<button class="delete-btn">Delete</button>'
+        newTodoElement.querySelector('.delete-btn').addEventListener('click', ()=>{
+            alert('delete');
+        })
+
+        newTodoElement.innerHTML += ""
+
+      
+          // 3. ADD THE NEW ELEMENT AS CHILD OF THE <UL> ELEMENT
+          taskListElement.appendChild(newTodoElement);
+
+
+      })
+  </script>
+
+</html>
