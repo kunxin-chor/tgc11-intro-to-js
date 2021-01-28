@@ -1,0 +1,22 @@
+[
+  {
+    "name": "birthday-song",
+    "display": "Birthday Song"
+  },
+  {
+    "name": "live-band",
+    "display": "Live Band"
+  },
+  {
+    "name": "seafood-platter",
+    "display": "Seafood Platter"
+  },
+  {
+    "name": "handmade-noodle",
+    "display": "Handmade Noodle"
+  },
+  {
+      "name":"hip-hop",
+      "display":"Live Hip Hop Dance"
+  }
+]

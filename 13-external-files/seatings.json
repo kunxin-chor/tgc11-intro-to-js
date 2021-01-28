@@ -1,0 +1,22 @@
+[
+  {
+    "name": "counter",
+    "display": "Counter Seat"
+  },
+  {
+    "name": "table",
+    "display": "Table"
+  },
+  {
+    "name": "room",
+    "display": "Private Room"
+  },
+  {
+    "name": "jail",
+    "display": "Jail-themed concept"
+  },
+  {
+    "name": "harry-potter",
+    "display":"Harry Potter-themed"
+  }
+]
