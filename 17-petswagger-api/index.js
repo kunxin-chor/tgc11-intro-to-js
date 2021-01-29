@@ -1,5 +1,42 @@
 // const means a constant variable
 const baseURL = "https://petstore.swagger.io/v2/";
+const categories = [
+  {
+    id: 1,
+    name: "Dog"
+  },
+  {
+    id: 2,
+    name: "Cat"
+  },
+  {
+    id: 3,
+    name: "Fish"
+  },
+  {
+    id: 4,
+    name: "Others"
+  }
+];
+
+const tags = [
+  {
+    id: 1,
+    name: "Cute"
+  },
+  {
+    id: 2,
+    name: "Shedding"
+  },
+  {
+    id: 3,
+    name: "Old"
+  },
+  {
+    id: 4,
+    name: "Young"
+  }
+];
 
 function renderTags(pet) {
   let tags = [];
@@ -10,25 +47,79 @@ function renderTags(pet) {
 }
 
 function renderCategory(pet) {
-    // try/catch
-    try {
-        return pet.category.name;
-    } catch (e) {
-        console.log("No category found for pet " + pet.id);
-        return "n/a";
-    }
+  // try/catch
+  try {
+    return pet.category.name;
+  } catch (e) {
+    console.log("No category found for pet " + pet.id);
+    return "n/a";
+  }
 }
 
 function renderCategoryV2(pet) {
-    if (pet.category) {
-        return pet.category.name;
-    } else {
-        console.log("No category found for pet " + pet.id);
-        return "n/a"
-    }
+  if (pet.category) {
+    return pet.category.name;
+  } else {
+    console.log("No category found for pet " + pet.id);
+    return "n/a";
+  }
+}
+
+function addOptions(selectElement, options) {
+  for (let o of options) {
+    let html = `<option value='${o.id}'>${o.name}</option>`;
+    selectElement.innerHTML += html;
+  }
 }
 
 window.addEventListener("DOMContentLoaded", async function() {
+  let categorySelect = document.querySelector("#category");
+  addOptions(categorySelect, categories);
+
+  let tagSelect = document.querySelector("#tags");
+  addOptions(tagSelect, tags);
+
+  document.querySelector('#create-btn').addEventListener('click', async function(){
+      let name = document.querySelector('#name').value;
+      let categoryId = document.querySelector('#category').value;
+      let selectedCategory = categories[categoryId-1];
+
+    //   let tagsId = document.querySelector('#tags').value;
+    //   console.log(tagsId);
+    //   let selectedTags = [];
+    //   for (let tagId of tagsId) {
+    //     selectedTags.push(tags[tagId-1]);
+    //   }
+    let selectedTags = [];
+    let allTags = document.querySelectorAll('#tags option');
+    for (let t of allTags) {
+        if (t.selected) {
+            selectedTags.push(tags[parseInt(t.value)-1]);
+        }
+    }
+
+    let payload = {
+        'id': Math.random(1000000),
+        'name': name,
+        'category': selectedCategory,
+        'tags': selectedTags,
+        "photoUrls": [
+            "string"
+        ],
+        'status':'available'
+    }
+
+    try {
+            let response = await axios.post(baseURL + 'pet', payload);
+    console.log(response);
+    } catch (e) {
+        alert("Failed to create pet");
+        console.log(e);
+    }
+
+
+  })
+
   // same as calling the endpoint with ?status=available added at the back
   let response = await axios.get(baseURL + "pet/findByStatus", {
     params: {
@@ -48,6 +139,6 @@ window.addEventListener("DOMContentLoaded", async function() {
         </div>
       </div>
         `;
-       document.querySelector("#results").innerHTML += html;
+    document.querySelector("#results").innerHTML += html;
   }
 });
