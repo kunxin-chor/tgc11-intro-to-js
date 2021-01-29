@@ -72,13 +72,14 @@ function setupForm() {
     });
 }
 
-async function displayPets() {
-     // same as calling the endpoint with ?status=available added at the back
+async function displayPets(status) {
+  // same as calling the endpoint with ?status=available added at the back
   let response = await axios.get(baseURL + "pet/findByStatus", {
     params: {
-      status: "available"
+      status: status
     }
   });
+  document.querySelector("#results").innerHTML = "";
   for (let pet of response.data) {
     let html = `
          <div class="card" style="width: 18rem;">
@@ -94,4 +95,11 @@ async function displayPets() {
         `;
     document.querySelector("#results").innerHTML += html;
   }
+}
+
+function setupSearch() {
+  document.querySelector("#btn-show").addEventListener("click", function() {
+    let status = document.querySelector("#status").value;
+    displayPets(status);
+  });
 }

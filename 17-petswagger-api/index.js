@@ -39,10 +39,11 @@ const tags = [
 ];
 
 
-window.addEventListener("DOMContentLoaded", async function() {
+window.addEventListener("DOMContentLoaded",  function() {
  
-   setupForm();
-   displayPets();
 
- 
+   setupSearch(); 
+   setupForm();
+   displayPets('available');
+
 });
